@@ -1,0 +1,34 @@
+<div class="coolFont admin-cont" ng-controller="adminController as adminCtrl">
+
+	<div class="admin-header">
+		<div ng-click="adminCtrl.switchPage('users')">Регистрирани потребители</div>
+		<div ng-click="adminCtrl.switchPage('content')">Съдържание на бюлетина</div>
+	</div>
+
+        <div ng-show="adminCtrl.displayUsers" ng-hide="!adminCtrl.displayUsers">
+	<div class="admin-text">Регистрирани потребители</div>
+
+	<div class="admin-user admin-userHead">
+		<div>Email</div>
+		<div>Име</div>
+		<div>Дата на регистрация</div>
+	</div>
+	<div class="admin-user admin-userBody" ng-repeat="(id, data) in adminCtrl.userData | limitTo:adminCtrl.displayNum:adminCtrl.displayStart">
+		<div>[[data.username]]</div>
+		<div>[[data.name]]</div>
+		<div>[[data.time]]</div>
+	</div>
+	<div class="adminButtons">
+		<div ng-click="adminCtrl.previous()">Предишни</div>
+		<div ng-click="adminCtrl.next()">Следващи</div>
+	</div>
+	</div>
+
+        <div class="admin-text-cont" ng-show="adminCtrl.displayContent" ng-hide="!adminCtrl.displayContent">
+
+		<div class="admin-text">Съдържание на бюлетина</div>
+	<textarea ng-model="adminCtrl.bulletinContent" class="admin-input"></textarea>
+	<div ng-show="adminCtrl.showText" class="admin-text-conf">Промените са запазени успешно.</div>
+	<div class="admin-input-button f f-centered" ng-click="adminCtrl.changeBulletin()">Запазване</div>
+	</div>
+</div>

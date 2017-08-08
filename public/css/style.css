@@ -1,0 +1,230 @@
+@font-face {
+  font-family: 'DancingScript';
+  font-style: normal;
+  font-weight: normal;
+  src: local('DancingScript'), url('/fonts/dancingscript.ttf') format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.top50px {
+  margin-top: 40px;
+}
+
+.width100 {
+  max-width: 100% !important;
+}
+
+.coolFont {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.f {
+	display: flex;
+}
+
+.f-center {
+	justify-content: center;
+	align-items: center;
+}
+
+.f-col {
+	flex-direction: column;
+}
+
+.registerPage {
+  display: flex;
+  width: 600px;
+}
+
+.registerPage-cont {
+  width: 100%;
+}
+
+.registerSmallText {
+  font-size: 0.66em;
+  color: grey;
+  float: right;
+  padding-top: 10px;
+}
+
+.registerGlyphUser {
+  font-size: 16px;
+}
+
+.registerPageContent {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.registerInputCols {
+  width: 100%;
+}
+
+.registerInputCols:nth-child(2) {
+  margin-left: 20px;
+}
+
+.header-start {
+	width: 100%;
+	height: 50px;
+	background-color: #009143;
+}
+
+.header-main {
+	width: 100%;
+	background-color: white;
+	height: 120px;
+	font-size: 2em;
+	font-weight: bold;
+	color: #009143;
+}
+
+.header-img {
+	background: url("/images/11_clocks.jpg");
+	height: 300px;
+	width: 100%;
+}
+
+.btn-default:hover {
+  background-color: #009143;
+  color: white;
+}
+
+.successPageCont {
+  padding: 70px 0;
+  width: 100%;
+}
+
+.successPageHead {
+  font-size: 2em; 
+  color: #009143;
+}
+
+.successPageOther {
+
+}
+
+.loginPageContainer {
+  width: 100%;
+}
+
+.admin-cont {
+  padding: 0 0 60px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.admin-header {
+  width: 100%;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  background-color: #009143;
+  color: white;
+}
+
+.admin-header > div {
+  padding: 0 40px;
+  height: 70px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.admin-text {
+  font-size: 1.4em;
+  text-align: center;
+  margin: 60px 0 20px 0;
+}
+
+.admin-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  padding: 4px 0 4px 6px;
+  border: 1px solid black;
+  flex-wrap: wrap;
+}
+
+.admin-user :nth-child(1) {
+  width: 460px;
+  display: flex;
+  flex: 1;
+}
+
+.admin-user :nth-child(2) {
+  width: 300px;
+  display: flex;
+  flex: 1;
+}
+
+.admin-user :nth-child(3) {
+  width: 300px;
+  display: flex;
+  flex: 1;
+}
+
+.adminButtons {
+  width: 1070px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.adminButtons > div {
+  padding: 5px 10px 5px 10px;
+  background: #009143;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-text-cont {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.admin-input {
+  width: 70%;
+  height: 400px;
+}
+
+.admin-input-button {
+  width: 140px;
+  height: 40px;
+  background-color: #009143;
+  color: white;
+  border-radius: 5px;
+  padding: 8px 15px 5px 28px;
+  margin: 30px 0;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 1080px) {
+  .adminButtons {
+    width: 100%;
+  }
+}

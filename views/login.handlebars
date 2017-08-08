@@ -1,0 +1,20 @@
+
+<div class="registerPage container coolFont">
+	<div class="loginPageContainer">
+		<h2 class="page-header colorBlue">Административен панел</h2>
+		{{#if errors}}
+            <div class="alert alert-danger">{{#each errors}}{{msg}}{{/each}}</div>
+    	{{/if}}
+		<form method="post" action="/users/login">
+		  <div class="form-group">
+		    <label>Username</label>
+		    <input type="text" class="form-control" name="username" placeholder="Username">
+		  </div>
+		  <div class="form-group">
+		    <label>Password</label>
+		    <input type="password" class="form-control" name="password" placeholder="Password">
+		  </div>
+		  <div class="loginButton"><button type="submit" class="btn btn-default blueButton">Login</button></div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,118 @@
+<!-- TOP TOP -->
+<div class="topContainer">
+  <div class="topItems">
+    <div class="navLogo">
+    <div class="topItem" ng-style="{ width: mainCtrl.navLinkBlank + 'px', height: '1px' }"></div>
+    {{#if user}}
+    <div class="topItem topItemRightmost"><a href="/users/logout">Logout</a></div>
+    {{else}}
+    <div class="topItem topItemRightmost"><a href="/users/login">Login</a></div>
+    {{/if}}
+    <div class="topItemCartClick topItem" ng-click="mainCtrl.toggleCart()">
+      <div class="topItemCartNumber" ng-bind="mainCtrl.itemsInCartFormatted"></div>
+      <div class="topItem topItemClose topItemCart">Вашата количка</div>
+      <div class="topItem topItemClose">
+        <span class="glyphicon glyphicon-shopping-cart colorWhite"></span>
+      </div>
+    {{#if user}}
+    <div class="topItem "><a href="/clientarea">Client Area</a></div>
+    {{else}}
+    <div class="topItem"><a href="/users/register">Register</a></div>
+    {{/if}}
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- NAVIGATION -->
+<div class="topNav" ng-show="mainCtrl.fullMenu" ng-hide="mainCtrl.mobileMenu">
+  <div class="navLogo">
+    <a href="/"><img class="navLogoImageBig" src="/images/logo.jpg"></a>
+  </div>
+  <div class="navLinks">
+    <div class="navLink navLinkPromo">ПРОМОЦИИ</div>
+    <div class="navLink" ng-class="{'navLinkHovered' : showDomains==true }" ng-mouseenter="showDomains=true" ng-mouseleave="showDomains=false">
+      Домейни
+      <div ng-show="showDomains" ng-mouseenter="showDomains=true" ng-mouseleave="showHosting=false" class="navLinkDropdown navLinkDropdownDomains">
+        <div class="navDropBlank"></div>
+        <a class="navLinkDropA" href="/cloud-hosting"><div class="navLinkDropHeader coolFont cursorPointer">Регистрирай домейн
+        </div>
+        <div class="navLinkDropSmall coolFont cursorPointer">Намери идеалния домейн
+        </div></a>
+        <a class="navLinkDropA" href="/cloud-hosting"><div class="navLinkDropHeader coolFont cursorPointer">Трансфер на домейни
+        </div>
+        <div class="navLinkDropSmall coolFont cursorPointer">Трансфер на домейни с лекота
+        </div></a>
+        <a class="navLinkDropA" href="/cloud-hosting"><div class="navLinkDropHeader coolFont cursorPointer">Whois privacy
+        </div>
+        <div class="navLinkDropSmall coolFont cursorPointer">Предпази личната си информация
+        </div></a>
+        <div class="navLinkDropRegisterDomain">
+          <div class="input-group navLinkDropRegisterDomainSrc">
+            <input type="text" class="form-control navLinkDropRegisterDomainSrc " placeholder="Търсене на домейн">
+            <span class="input-group-btn">
+              <button class="btn btn-default navLinkDropRegisterDomainSrc navLinkDropRegisterDomainBtn" type="button">Go!</button>
+            </span>
+          </div>
+        </div>
+      </div>      
+    </div>
+    <div class="navLink" ng-mouseenter="showWordpress=true" ng-mouseleave="showWordpress=false" ng-class="{'navLinkHovered' : showWordpress==true }">
+      Wordpress
+      <div ng-show="showWordpress" ng-mouseenter="showWordpress=true" ng-mouseleave="showWordpress=false" class="navLinkDropdown">
+        <div class="navDropBlank"></div>
+        <a class="navLinkDropA" href="/wordpress-hosting">
+          <div class="navLinkDropWordpress"></div>
+        </a>
+        <div class="navLinkWordpressLine"></div>
+        <a class="navLinkDropA" href="/wordpress-hosting"><div class="navLinkDropHeader coolFont cursorPointer">Wordpress Хостинг
+        </div>
+        <div class="navLinkDropSmall coolFont cursorPointer">Специализиран Wordpress хостинг
+        </div></a>
+        <a class="navLinkDropA" href="/wordpress-hosting"><div class="navLinkDropHeader coolFont cursorPointer">Пълна Wordpress Поддръжка
+        </div>
+        <div class="navLinkDropSmall coolFont cursorPointer">Нека се погрижим за сайта ви
+        </div></a>
+        <a class="navLinkDropA" href="/wordpress-hosting"><div class="navLinkDropHeader coolFont cursorPointer">Разработване на Wordpress
+        </div>
+        <div class="navLinkDropSmall coolFont cursorPointer">Можем да построим идеалния сайт.
+        </div></a>
+      </div>
+    </div>
+    <div class="navLink" ng-mouseenter="showHosting=true" ng-mouseleave="showHosting=false" ng-class="{'navLinkHovered' : showHosting==true }">
+      Хостинг
+      <div ng-show="showHosting" ng-mouseenter="showHosting=true" ng-mouseleave="showHosting=false" class="navLinkDropdown" ng-style="{ 'margin-left': mainCtrl.navMenuOffsetHosting + 'px' }">
+        <div class="navDropBlank"></div>
+        <a class="navLinkDropA" href="/cloud-hosting"><div class="navLinkDropHeader coolFont cursorPointer">Хостинг Пакети
+        </div>
+        <div class="navLinkDropSmall coolFont cursorPointer">Бърз, надежден и лесен за ползване
+        </div></a>
+        <a class="navLinkDropA" href="/cloud-hosting"><div class="navLinkDropHeader coolFont cursorPointer">Wordpress Hosting
+        </div>
+        <div class="navLinkDropSmall coolFont cursorPointer">Специализиран Wordpress хостинг
+        </div></a>
+        <a class="navLinkDropA" href="/cloud-hosting"><div class="navLinkDropHeader coolFont cursorPointer">Виртуални Сървъри
+        </div>
+        <div class="navLinkDropSmall coolFont cursorPointer">Виртуални сървъри само за вашия сайт
+        </div></a>
+      </div>
+    </div>
+    <div class="navLink" class="navLink" ng-mouseenter="showServers=true" ng-mouseleave="showServers=false" ng-class="{'navLinkHovered' : showServers==true }">
+      Сървъри
+      <div ng-show="showServers" ng-mouseenter="showServers=true" ng-mouseleave="showServers=false" class="navLinkDropdown" ng-style="{ 'margin-left': mainCtrl.navMenuOffsetServers + 'px' }">
+        <div class="navDropBlank"></div>
+        <div class="navLinkDropWrap">
+        <a class="navLinkDropA" href="/servers"><div class="navLinkDropHeader coolFont cursorPointer">Виртуални Сървъри (VPS)
+        </div>
+        <div class="navLinkDropSmall coolFont cursorPointer">Виртуални сървъри само за вашия акаунт
+        </div></a>
+        </div>
+        <a class="navLinkDropA" href="/servers"><div class="navLinkDropHeader coolFont cursorPointer">Dedicated сървъри (DS)
+        </div>
+        <div class="navLinkDropSmall coolFont cursorPointer">Ултимативното решение в хостинга
+        </div></a>
+      </div>   
+    </div>
+  </div> 
+</div><!-- NAVIGATION END -->

@@ -1,0 +1,29 @@
+<div class="registerPage container coolFont f f-center">
+  <div class="registerPageContent">
+    <h2 class="page-header colorBlue">Записване <span class="registerSmallText">Информация за нашия уебинар.</span></h2>
+    {{#if errors}}
+            <div class="alert alert-danger">{{#each errors}}{{msg}}{{/each}}</div>
+    {{/if}}
+    <form method="post" action="/users/register">
+      <div class="registerInputCols f f-col">
+        <div class="form-group">
+          <label>Вашето име</label>
+          <input type="text" class="form-control" placeholder="Име" name="name">
+        </div>
+        <div class="form-group">
+          <label>Вашия email</label>
+          <input type="text" class="form-control" placeholder="Email" name="username">
+        </div>
+        <div class="form-group">
+          <label>Парола</label>
+          <input type="password" class="form-control" placeholder="Парола" name="password">
+        </div>
+        <div class="form-group">
+          <label>Повторете паролата</label>
+          <input type="password" class="form-control" placeholder="Повторно парола" name="password2">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
