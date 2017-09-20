@@ -1,0 +1,84 @@
+<div class="webinar-cont f f-center coolFont">
+  <div class="webinar f f-space-bet">
+    <div class="webinar-leftPanel">
+
+      <div class="webinar-youtube">
+        <iframe width="640" height="400"
+          ng-src="[[webinarVideo]]" frameborder="0">
+        </iframe>
+      </div>
+      <div ng-repeat="info in webinarAddInfo" class="webinar-addinfo">
+        <div class="webinar-oneHead f">
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          <div class="webinar-oneInfoText">
+             [[info.header]]
+          </div>
+        </div>
+        <div class="webinar-details">
+          [[info.content]]
+        </div>
+      </div>
+    </div>
+
+    <div class="webinar-org">
+      <div class="webinar-header f f-center">
+        WEBINAR DETAILS
+      </div>
+
+      <div class="webinar-person f">
+        <div>
+          <img class="webinar-img" src="/images/personPic.jpg" />
+        </div>
+        <div>
+          <div class="webinar-person-name">
+            [[webinarHost]]
+          </div>
+          <div>
+            Webinar Host
+          </div>
+        </div>
+      </div>
+
+      <div class="webinar-dates">
+        <div ng-repeat="date in webinarDates" class="webinar-date f">
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          <div>
+            [[date.dayOfWeek]], [[date.date]], at [[date.hour]]:[[date.minute]]
+          </div>
+        </div>
+      </div>
+
+      <div class="webinar-timeUntil f f-space-bet">
+        <div class="f f-center f-col">
+          <div class="webinar-time" id="days"></div>
+          <div>
+            days
+          </div>
+        </div>
+        <div class="f f-center f-col">
+          <div class="webinar-time" id="hours"></div>
+          <div>
+            hours
+          </div>
+        </div>
+        <div class="f f-center f-col">
+          <div class="webinar-time" id="minutes"></div>
+          <div>
+            minutes
+          </div>
+        </div>
+        <div class="f f-center f-col">
+          <div class="webinar-time" id="seconds"></div>
+          <div>
+            seconds
+          </div>
+        </div>
+      </div>
+
+      <a class="nodecor" href="https://bb.bdsa.bg/demo/demo3.jsp"><div class="webinar-button f f-center">
+        Click here to join the room!
+      </div></a>
+
+    </div>
+  </div>
+</div>

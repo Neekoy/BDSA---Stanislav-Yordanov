@@ -10,6 +10,10 @@
   padding: 0;
 }
 
+a {
+  text-decoration: none;GG
+}
+
 .italic {
   font-style: italic;
 }
@@ -38,6 +42,14 @@
 
 .f-col {
 	flex-direction: column;
+}
+
+.f-space-bet {
+  justify-content: space-between;
+}
+
+.f-grow {
+  flex-grow: 1;
 }
 
 .registerPage {
@@ -89,9 +101,25 @@
 }
 
 .header-img {
-	background: url("/images/11_clocks.jpg");
-	height: 300px;
-	width: 100%;
+	background: url("/images/header_new.png");
+  background-size: cover;
+	height: 280px;
+	width: 590px;
+  margin: 20px 0 30px 0;
+}
+
+.header-button {
+  width: 90px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.header-button:hover {
+  background: white;
+  color: #009143;
 }
 
 .btn-default:hover {
@@ -105,7 +133,7 @@
 }
 
 .successPageHead {
-  font-size: 2em; 
+  font-size: 2em;
   color: #009143;
 }
 
@@ -127,13 +155,18 @@
 }
 
 .admin-header {
-  width: 100%;
+  width: 50%;
   display: flex;
   height: 70px;
   justify-content: center;
   align-items: center;
   background-color: #009143;
   color: white;
+}
+
+.admin-header-new {
+    margin: 0 0 30px 0;
+    width: 100%;
 }
 
 .admin-header > div {
@@ -184,7 +217,7 @@
   width: 1070px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between; 
+  justify-content: space-between;
   flex-wrap: wrap;
   margin: 40px 0;
 }
@@ -205,9 +238,10 @@
   flex-direction: column;
 }
 
-.admin-input {
-  width: 70%;
-  height: 400px;
+.admin-input-area {
+  margin-top: 30px;
+  width: 400px;
+  height: 450px;
 }
 
 .admin-input-button {
@@ -222,9 +256,263 @@
   cursor: pointer;
 }
 
+.admin-uploadFile {
+  background-color: #009143;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-submitFile {
+  background-color: #009143;
+  color: white;
+  width: 90px;
+  margin-top: 12px;
+}
+
+.margTop {
+  margin-top: 15px;
+}
+
+.admin-inputImage {
+  width: 400px;
+}
+
+.admin-inputhead {
+  font-size: 1.2em;
+  text-align: left;
+  width: 400px;
+  margin-top: 20px;
+}
+
+.admin-inputTA {
+  height: 200px;
+}
+
+.admin-input {
+  width: 400px;
+  height: 45px;
+  font-size: 1.3em;
+}
+
+.admin-input-half {
+  width: 200px;
+  height: 45px;
+  font-size: 1.3em;
+}
+
+.adminnewInput {
+  height: 40px;
+  width: 40px;
+  background: #009143;
+  border-radius: 4px;
+  color: white;
+  font-size: 1.5em !important;
+}
+
+.admin-addInfo {
+  width: 400px;
+}
+
+.newDate {
+  border: 1px solid black;
+}
+
 
 @media screen and (max-width: 1080px) {
   .adminButtons {
     width: 100%;
   }
+}
+
+.hidden {
+  display: none;
+}
+
+.webinar-cont {
+  width: 100%;
+  padding: 50px 0 120px 0;
+}
+
+.webinar {
+  width: 1200px;
+  background: #e2e2e2;
+  padding: 20px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #a3a3a3 0%,#a3a3a3 50%,#009143 50%,#009143 100%);
+}
+
+.webinar-youtube {
+}
+
+.webinar-org {
+  background: white;
+  width: 500px;
+  height: 600px;
+  border: 1px solid #e5e5e5;
+  -webkit-box-shadow: 0 0 10px #d8d8d8;
+        box-shadow: 0 0 10px #d8d8d8;
+  border-radius: 5px;
+  order: 2;
+}
+
+.webinar-header {
+  font-size: 1.7em;
+  color: #666666;
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+
+.webinar-img {
+  height: 110px;
+  width: 110px;
+  border-radius: 50%;
+}
+
+.webinar-person {
+  padding: 20px;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.webinar-person :nth-child(1) {
+  margin-right: 10px;
+}
+
+.webinar-person-name {
+  color: #009143;
+  font-size: 1.2em;
+}
+
+.webinar-dates {
+  padding: 20px;
+  font-size: 1.2em;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.webinar-date {
+  padding: 5px 0 5px 0;
+}
+
+.webinar-timeUntil {
+  height: 100px;
+  padding: 40px;
+  margin: 0 30px 10px 30px;
+}
+
+.fa-arrow-right {
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.webinar-time {
+  font-size: 1.8em;
+  color: #009143;
+}
+
+.webinar-button {
+  padding: 30px 50px 30px 50px;
+  background-color: #009143;
+  color: white;
+  margin: 0 40px 40px 40px;
+  border-radius: 5px;
+  font-size: 1.7em;
+}
+
+.webinar-addinfo {
+  padding: 25px 0 0 0;
+}
+
+.webinar-oneHead {
+  font-size: 1.4em;
+  color: white;
+}
+
+.webinar-leftPanel {
+  order: 1;
+}
+
+.webinar-details {
+  padding: 5px 0 40px 28px;
+  width: 640px;
+  color: #e6fff1;
+}
+
+@media screen and (max-width: 1200px) {
+  .webinar {
+    flex-direction: column;
+    background: #009143;
+  }
+  .webinar-leftPanel {
+    order: 2;
+  }
+  .webinar-org {
+    order: 1;
+    width: 100%;
+  }
+  .webinar-youtube > iframe {
+    width: 100%;
+    height: 500px;
+    padding-top: 15px;
+  }
+  .webinar-oneHead {
+    justify-content: center;
+    font-size: 1.6em;
+  }
+  .webinar-details {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.3qem;
+  }
+}
+
+.size100 {
+    font-size: 1.2em;
+    margin: 20px 0;
+    width: 400px;
+    cursor: pointer;
+}
+
+.size200 {
+    width: 600px;
+    padding: 0 20px 0 20px;
+    margin: 50px 0 30px 0;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.webinarItem {
+    padding: 10px;
+    border: 1px solid white;
+}
+
+.webinarItem:hover {
+    border: 1px solid #066834;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.webinarActive {
+    background: green;
+    padding: 0 20px;
+    border-radius: 5px;
+    color: white;
+}
+
+.webinarActiveFront {
+    background: green;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.datepicker {
+    width: 100%;
+    height: 40px;
+    font-size: 1.2em;
+}
+
+.nodecor:hover {
+    text-decoration: none;
 }

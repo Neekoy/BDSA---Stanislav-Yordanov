@@ -1,34 +1,125 @@
 <div class="coolFont admin-cont" ng-controller="adminController as adminCtrl">
 
+    <div class="admin-header admin-header-new">
+        <div ng-click="adminCtrl.changeCurrentWebinar(1)">Първи уебинар</div>
+        <div ng-click="adminCtrl.changeCurrentWebinar(2)">Втори уебинар</div>
+    </div>
+
 	<div class="admin-header">
 		<div ng-click="adminCtrl.switchPage('users')">Регистрирани потребители</div>
 		<div ng-click="adminCtrl.switchPage('content')">Съдържание на бюлетина</div>
+		<div ng-click="adminCtrl.switchPage('webinar')">Настройки за Уебинар</div>
 	</div>
 
-        <div ng-show="adminCtrl.displayUsers" ng-hide="!adminCtrl.displayUsers">
-	<div class="admin-text">Регистрирани потребители</div>
+  <div ng-show="adminCtrl.displayUsers" ng-hide="!adminCtrl.displayUsers">
+  	<div class="admin-text">Регистрирани потребители</div>
 
-	<div class="admin-user admin-userHead">
-		<div>Email</div>
-		<div>Име</div>
-		<div>Дата на регистрация</div>
-	</div>
-	<div class="admin-user admin-userBody" ng-repeat="(id, data) in adminCtrl.userData | limitTo:adminCtrl.displayNum:adminCtrl.displayStart">
-		<div>[[data.username]]</div>
-		<div>[[data.name]]</div>
-		<div>[[data.time]]</div>
-	</div>
-	<div class="adminButtons">
-		<div ng-click="adminCtrl.previous()">Предишни</div>
-		<div ng-click="adminCtrl.next()">Следващи</div>
-	</div>
+  	<div class="admin-user admin-userHead">
+  		<div>Email</div>
+  		<div>Име</div>
+		  <div>Дата на регистрация</div>
+	  </div>
+  	<div class="admin-user admin-userBody" ng-repeat="(id, data) in adminCtrl.userData | limitTo:adminCtrl.displayNum:adminCtrl.displayStart">
+  		<div>[[data.username]]</div>
+  		<div>[[data.name]]</div>
+  		<div>[[data.time]]</div>
+  	</div>
+  	<div class="adminButtons">
+  		<div ng-click="adminCtrl.previous()">Предишни</div>
+  		<div ng-click="adminCtrl.next()">Следващи</div>
+  	</div>
 	</div>
 
-        <div class="admin-text-cont" ng-show="adminCtrl.displayContent" ng-hide="!adminCtrl.displayContent">
+  <div class="admin-text-cont" ng-show="adminCtrl.displayContent" ng-hide="!adminCtrl.displayContent">
 
-		<div class="admin-text">Съдържание на бюлетина</div>
-	<textarea ng-model="adminCtrl.bulletinContent" class="admin-input"></textarea>
-	<div ng-show="adminCtrl.showText" class="admin-text-conf">Промените са запазени успешно.</div>
-	<div class="admin-input-button f f-centered" ng-click="adminCtrl.changeBulletin()">Запазване</div>
+		<div class="admin-text coolFont">Съдържание на бюлетин за [[currentWebinarName]]</div>
+		<div class="admin-inputhead">Тема на имейла</div>
+		<input class="admin-input" ng-model="adminCtrl.bulletinSubject" />
+		<div class="admin-inputhead">Съдържание на имейла</div>
+  	<textarea ng-model="adminCtrl.bulletinContent" class="admin-input-area"></textarea>
+    <div ng-show="adminCtrl.showText" class="admin-text-conf">Промените са запазени успешно.</div>
+  	<div class="admin-input-button f f-centered" ng-click="adminCtrl.changeBulletin()">Запазване</div>
 	</div>
+
+
+  <div class="admin-text-cont" ng-show="adminCtrl.displayWebinar" ng-hide="!adminCtrl.displayWebinar">
+		<div class="admin-text">Информация за [[currentWebinarName]]</div>
+
+    <div class="f size100" ng-class="adminCtrl.webinarActivated" ng-click="adminCtrl.webinarActivate()">
+        <div class="admin-webinarActivate">Активиране на уебинара</div>
+        <div class="f-grow"></div>
+        <div class="admin-webinarActivateButton"><i class="fa fa-check" aria-hidden="true"></i></div>
+
+    </div>
+
+    <div class="admin-inputhead">Качване на снимка</div>
+    <form class="admin-inputImage" ref='uploadForm'
+      id='uploadForm'
+      action='/upload'
+      method='post'
+      encType="multipart/form-data">
+        <input class="admin-uploadFile" type="file" name="sampleFile" />
+        <input class="admin-submitFile" type='submit' value='Upload!' />
+    </form>
+
+		<div>
+			<div class="admin-inputhead">Линк към видео</div>
+		  <input class="admin-input" ng-model="adminCtrl.webinarUrl" />
+		</div>
+		<div>
+			<div class="admin-inputhead">Име на уебинара</div>
+		  <input class="admin-input" ng-model="adminCtrl.webinarName" />
+		</div>
+		<div>
+			<div class="admin-inputhead">Хост</div>
+		  <input class="admin-input" ng-model="adminCtrl.webinarHost" />
+		</div>
+		<div class="f">
+		  <div class="admin-inputhead">Дати</div>
+		</div>
+		<div ng-repeat="input in adminCtrl.webinarDates" class="margTop">
+
+			<div>
+            <p>Дата: <input class="datepicker" ng-model="input.date" type="text" id="datepicker"></p>
+			  <div class="f">
+			  <input ng-click="adminCtrl.clearField(input, 'date')" class="admin-input-half" ng-model="input.hour" />
+		      <input ng-click="adminCtrl.clearField(input, 'hour')" class="admin-input-half" ng-model="input.minute" />
+			  </div>
+		 </div>
+		</div>
+		<div class="f f-center admin-addInfo">
+		  <div class="f-grow">
+		  </div>
+		  <div class="admin-inputHead">Допълнителна дата</div>
+		  <div ng-click="adminCtrl.addNewDate()" class="adminnewInput f f-center"><i class="fa fa-plus" aria-hidden="true"></i></div>
+		</div>
+
+		<div class="f">
+		  <div class="admin-inputhead">Допълнителна информация</div>
+		</div>
+		<div ng-repeat="info in adminCtrl.webinarAddInfo" class="margTop">
+			<div>
+			  <div class="f f-col">
+			    <input class="admin-input" ng-model="info.header" />
+		      <textarea class="admin-inputTA" ng-model="info.content"></textarea>
+			  </div>
+		 </div>
+		</div>
+		<div class="f f-center admin-addInfo">
+		  <div class="f-grow">
+		  </div>
+		  <div class="admin-inputHead">Допълнителнo поле</div>
+		  <div ng-click="adminCtrl.addNewInfoField()" class="adminnewInput f f-center"><i class="fa fa-plus" aria-hidden="true"></i></div>
+		</div>
+
+
+	<div class="buttonSubmit">
+    <div ng-show="adminCtrl.showText2" class="admin-text-conf">Промените са запазени успешно.</div>
+  	<div class="admin-input-button f f-centered" ng-click="adminCtrl.changeWebinar()">Запазване</div>
+	</div>
+
+
+	</div>
+
+
 </div>

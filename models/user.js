@@ -19,7 +19,10 @@ var UserSchema = mongoose.Schema({
 	},
 	admin: {
 		type: Boolean
-	}
+	},
+    webinar: {
+        type: Number
+    }
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);

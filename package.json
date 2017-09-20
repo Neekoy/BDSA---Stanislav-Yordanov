@@ -17,6 +17,7 @@
     "connect-memcached": "^0.2.0",
     "cookie-parser": "^1.4.1",
     "express": "*",
+    "express-fileupload": "^0.2.0",
     "express-handlebars": "*",
     "express-messages": "*",
     "express-session": "*",

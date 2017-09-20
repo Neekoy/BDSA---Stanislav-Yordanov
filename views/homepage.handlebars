@@ -5,6 +5,16 @@
             <div class="alert alert-danger">{{#each errors}}{{msg}}{{/each}}</div>
     {{/if}}
     <form method="post" action="/users/register">
+      <div class="registerInputCols f f-col size200">
+          <div ng-repeat="webinar in webinarNames">
+              <div ng-click="mainCtrl.chosenWebinar($index)" class="form-group f webinarItem" ng-class="{'webinarActiveFront': mainCtrl.chosenWebClass === $index}">
+                  <label>[[webinar]]</label>
+                  <div class="f-grow"></div>
+                  <div class="admin-webinarActivateButton"><i class="fa fa-check" aria-hidden="true"></i></div>
+                  <input style="display: none" value="mainCtrl.chosenWebClass" name="webinar">
+              </div>
+          </div>
+      </div>
       <div class="registerInputCols f f-col">
         <div class="form-group">
           <label>Вашето име</label>
@@ -14,13 +24,13 @@
           <label>Вашия email</label>
           <input type="text" class="form-control" placeholder="Email" name="username">
         </div>
-        <div class="form-group">
+        <div class="form-group hidden">
           <label>Парола</label>
-          <input type="password" class="form-control" placeholder="Парола" name="password">
+          <input value="12345" type="password" class="form-control" placeholder="Парола" name="password">
         </div>
-        <div class="form-group">
+        <div class="form-group hidden">
           <label>Повторете паролата</label>
-          <input type="password" class="form-control" placeholder="Повторно парола" name="password2">
+          <input value="12345" type="password" class="form-control" placeholder="Повторно парола" name="password2">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </div>

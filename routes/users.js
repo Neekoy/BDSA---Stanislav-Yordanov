@@ -24,6 +24,7 @@ router.post('/register', function(req, res){
 	var username = req.body.username;
 	var password = req.body.password;
 	var password2 = req.body.password2;
+    var webinar = req.body.webinar;
 
 	// Validation
 	req.checkBody('name', 'Името е задължително поле. ').notEmpty();
@@ -44,7 +45,8 @@ router.post('/register', function(req, res){
 			username: username,
 			password: password,
 			time: epochTime,
-			admin: true
+			admin: true,
+            webinar: webinar,
 		});
 
 		User.createUser(newUser, function(err, user){
@@ -52,7 +54,7 @@ router.post('/register', function(req, res){
 			console.log(user);
 		});
 
-		sendMail.sendMessage(username);
+		sendMail.sendMessage(username, webinar);
 		console.log("Mail sent!!");
 		req.flash('success_msg', 'You are registered and can now login');
 

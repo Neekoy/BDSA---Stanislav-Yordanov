@@ -14,6 +14,7 @@ var MemcachedStore = require('connect-memcached')(session);
 var uuid = require('node-uuid');
 var Schema = mongoose.Schema;
 var async = require("async");
+const fileUpload = require('express-fileupload');
 
 var fs = require('fs');
 
@@ -21,6 +22,8 @@ const nodemailer = require('nodemailer');
 const mailConfig = require('./mailConfig');
 const mailContent = require('./mailContent');
 const User = require('./models/user');
+const Webinar = require('./models/webinar');
+const Email = require('./models/emailcontent');
 
 var milliseconds = new Date().getTime();
 let humanDate = new Date(milliseconds);
@@ -83,6 +86,7 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(fileUpload());
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -134,7 +138,7 @@ app.use('/users', users);
 app.use('/', navigation);
 
 // Set Port
-app.set('port', (process.env.PORT || 4004));
+app.set('port', (process.env.PORT || 4010));
 
 // Start the Server
 serv.listen(app.get('port'), function(){
@@ -157,6 +161,29 @@ transporter.sendMail(mailOptions, (error, info) => {
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
 });
+
+
+var newWebinar = new Webinar({
+  host: "Stanislav Yordanov",
+  video: "https://www.youtube.com/embed/G7b-_YcACuQ",
+  dates: [{
+    date: "12.09.2017",
+    hour: "15:43",
+  }],
+  addInfo: [{
+    header: "Lala some header",
+    content: "Lala some content",
+  }]
+})
+
+newWebinar.save();
+
+var newEmail = new Email({
+  subject: "This is a default subject",
+  content: "This is default content",
+})
+
+newEmail.save();
 */
 
 
@@ -182,17 +209,105 @@ async.waterfall([
 ]);
     });
 
-    socket.on('bulletinChange', function(data) {
-	console.log(data);
-	var toWrite = "let content = '" + data + "';\r\n\r\nmodule.exports = content;";
-        fs.writeFile("./mailContent.js", toWrite, function(err) {
-            if(err) {
-                return console.log(err);
-            }
+  socket.on('bulletinChange', function(data) {
+      if (data.webinar === 1) {
+          Email.findById("59b16afc9e4b05c12a49f512", function(err, doc) {
+            if (err) console.log(error);
+            doc.content = data.bulletinContent;
+            doc.subject = data.bulletinSubject;
+            doc.save();
+          });
+      } else {
+          Email.findById("59b16bbb9eeca7192da347f1", function(err, doc) {
+            if (err) console.log(error);
+            doc.content = data.bulletinContent;
+            doc.subject = data.bulletinSubject;
+            doc.save();
+          });
+      }
 
-        console.log("The file was saved!");
-        }); 
+  });
+
+    socket.on('addWebinarInfo', function(data) {
+
+      console.log(data.webinarName + " DIASJDSAIJ");
+
+        if (data.webinarNum === 1) {
+             Webinar.findById("59b1495222770efa502f2935", function(err, doc) {
+                doc.active = data.active;
+                doc.name= data.webinarName;
+                doc.host = data.host;
+                doc.video = data.video;
+                doc.dates = data.dates;
+                doc.addinfo = data.addinfo;
+                doc.save(function(err) {
+                  if (err) throw err;
+                  console.log(doc);
+                })
+              });
+        } else {
+             Webinar.findById("59bcbac0f89a89244f21d173", function(err, doc) {
+                doc.active = data.active;
+                doc.host = data.host;
+                doc.name= data.webinarName;
+                doc.video = data.video;
+                doc.dates = data.dates;
+                doc.addinfo = data.addinfo;
+                doc.save(function(err) {
+                  if (err) throw err;
+                  console.log(doc);
+                })
+              });
+        }
+
     });
+
+    socket.on("getWebinarInfo", function(data) {
+        if (data === 1) {
+            Webinar.findById("59b1495222770efa502f2935", function(err, doc) {
+              if (err) console.log(error);
+              socket.emit("receiveWebinarInfo", doc);
+            });
+        } else {
+            Webinar.findById("59bcbac0f89a89244f21d173", function(err, doc) {
+              if (err) console.log(error);
+              socket.emit("receiveWebinarInfo", doc);
+            });
+
+        }
+    });
+
+    socket.on("getWebinarNames", function(data) {
+        webinarNames = [];
+        async.waterfall([
+            function(callback) {
+                Webinar.findById("59b1495222770efa502f2935", function(err, doc) {
+                  if (err) console.log(error);
+                  item = {
+                      name: doc.name,
+                      active: doc.active,
+                  }
+                  webinarNames.push(item);
+                  callback();
+                });
+            },
+            function(callback) {
+                Webinar.findById("59bcbac0f89a89244f21d173", function(err, doc) {
+                  if (err) console.log(error);
+                  item = {
+                      name: doc.name,
+                      active: doc.active,
+                  }
+                  webinarNames.push(item);
+                  callback();
+                });
+            },
+            function(callback) {
+                console.log(webinarNames);
+                socket.emit("sendWebinarNames", webinarNames);
+            }
+        ]);
+    })
 
     socket.on('disconnect', function() {
         delete USERS_ONLINE[socket.id];
